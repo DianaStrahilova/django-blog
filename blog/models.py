@@ -3,6 +3,11 @@ from django.contrib.auth.models import User
 # Create your models here.
 STATUS = ((0, "Draft"), (1, "Published"))
 class Post(models.Model):
+    class Meta:
+        ordering = ["-created_on"]
+    def __str__(self):
+        return f"{self.title} | written by {self.author}"
+
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
@@ -16,6 +21,11 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
+    class Meta:
+        ordering = ["created_on"]
+    def __str__(self):
+        return f"{self.body} by {self.author}"
+
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name="comments")
     author = models.ForeignKey(
