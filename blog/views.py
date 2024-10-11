@@ -9,5 +9,8 @@ from .models import Post
 
 
 class PostList(generic.ListView):
-    model = Post
+    model = Post # same as all()
+    # generic view
+    queryset = Post.objects.all().order_by("-created_on") # show all authors and ordering posts
+    # queryset = Post.objects.filter(author=2) # show second author / filter
 
