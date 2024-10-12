@@ -14,5 +14,7 @@ class PostList(generic.ListView):
     # queryset = Post.objects.all().order_by("-created_on") # show all authors and ordering posts
     # queryset = Post.objects.filter(author=2) # show second author / filter
     queryset = Post.objects.filter(status=1)
-    template_name = "post_list.html"
+    template_name = "blog/index.html"
+    paginate_by = 6
+    
 
